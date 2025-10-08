@@ -1,4 +1,5 @@
-﻿using AuthSystem.Application.Dtos.Request;
+﻿using AuthenticationSystem.PolicyAuthorization;
+using AuthSystem.Application.Dtos.Request;
 using AuthSystem.Application.Dtos.Response;
 using AuthSystem.Application.Helpers;
 using AuthSystem.Application.Interfaces;
@@ -37,7 +38,7 @@ namespace AuthenticationSystem.Controllers
             return Ok(response);
         }
 
-        [AllowAnonymous]
+        [Authorize(Policy = AuthPolicies.Admin)]
         [HttpPost("BanUser", Name = "BanUser")]
         [SwaggerOperation(Summary = "Ban a user")]
         [SwaggerResponse(StatusCodes.Status200OK, Description = "")]
@@ -103,7 +104,7 @@ namespace AuthenticationSystem.Controllers
             return BadRequest(response);
         }
 
-        [AllowAnonymous]
+        [Authorize(Policy = AuthPolicies.Admin)]
         [HttpGet("GetUser", Name = "GetUser")]
         [SwaggerOperation(Summary = "Get a user")]
         [SwaggerResponse(StatusCodes.Status200OK, Description = "returns a user", Type = typeof(UserViewModel))]

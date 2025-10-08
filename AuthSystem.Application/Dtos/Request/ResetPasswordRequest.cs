@@ -5,7 +5,7 @@ namespace AuthSystem.Application.Dtos.Request
     public class ResetPasswordRequest
     {
         [Required]
-        public string UserId { get; set; }
+        public string Token { get; set; }
 
         [DataType(DataType.Password)]
         [Required]
